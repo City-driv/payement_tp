@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            border: 2px solid black;
+            border-radius: 12px;
+            padding: 15px;
+            width: 600px;
+            position: relative;
+            left: 25%;
+            font: 1em sans-serif;
+            background-color:azure;
+            
+        }
+        span{
+            color: red;
+            font-size: bold;
+            
+        }
+        h2{
+            color: blue;
+            text-align: center;
+        }
+        input{
+            border-radius: 8px;
+            margin: 4px;
+            background-color:rgba(172, 245, 255, 0.945);
+            padding: 2px;
+            font-size: 14px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        select{
+            background-color:cadetblue;
+        }
+        .ex1{
+            width: 55px;
+        }
+        .ccarte{
+            display: none;
+        }
+        button{
+            border-radius: 3px;
+            position: relative;
+            left: 40%;
+            background-color: #c2fbd7;
+            border-radius: 100px;
+            box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+            color: green;
+            cursor: pointer;
+            display: inline-block;
+            font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+            padding: 7px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 250ms;
+            border: 0;
+            font-size: 16px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            }
+
+        .btn:hover {
+        box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+        }
+        .ER{
+            display: none;
+        }
+        .err{
+
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+
+    </style>
+</head>
+<body>
+    
+    <form onsubmit="event.preventDefault();">
+        <h2>Informations de payement</h2><br>
+      <div>  
+        <label for="nom">Nom et prenom du client :</label>
+        <input type="text" id="nom" required>  <span id="ernom"></span>
+      </div>
+      <div>  
+        <label for="adresse">Adresse</label> 
+        <input type="text" id="adresse" required> <span id="eradresse"></span>
+      </div>
+      <div>  
+        <label for="tel">Numero de telephone:(+212)</label>
+        <input type="text" id="tel" required> <span id="ertel"></span>
+      </div>
+      <div>  
+        <label for="payement">Type de payement:</label><br>
+        <input type="radio" value="paypal" name="payee" id="paypal" onclick="check();" checked>
+         <label for="paypal"> <img src="paypal.png" alt="paypal" width="90px"> </label> 
+        <input type="radio" value="carteBn" name="payee" id="carte-bn" onclick="check();">
+         <label for="carte-bn"> <img src="carte-bancaire.jpg" alt="carte-bancaire" width="300px"> </label> <br><br>
+      </div>  
+        <div id="champ_paypal">
+            Entrer votre e-mail: <input tyepe="email" id="email" required> <span id="ermail"></span> <br> 
+            Mot de passe : <input type="password" id="pwd" required> <span id="erpwd"></span> <br>
+            <p>NB:N'oubliez d'autoriser la transaction.</p>
+        </div>
+        <div id="champ_carte" class="ccarte">
+            <label for="type-carte">Selectionnez le type de carte bancaire :</label>
+            <select id="type-carte" required>
+                <option value="Visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="cmi">Cmi</option>
+                <option value="discover">Discover</option>
+            </select><br>
+            <label for="num-carte">Numero de la carte :</label>
+            <input type="text" id="num-carte" required><span id="ernumCarte"></span>
+            <label for="exp">Expiration fin</label>
+            <input type="number" class="ex1" id="exp1" value="1" required><span id="erexp1"></span>
+            <input type="number" class="ex1" id="exp2" value="2022" required><span id="erexp2"></span>
+            <label for="cv">Code de verification:</label>
+            <input type="text" class="ex1" id="cv" required><span id="ercv"></span>
+        </div> <br><br>
+        <button class="btn" type="submit" id="btnVl" onclick="verifier();">Valider</button>
+        <button class="btn" type="reset" id="btnRe">Effacer</button>
+
+        <div class="ER" id="ereur"> <span id="textER" class="err"> </span> </div>
+
+    </form>
+
+    <script>
+        var nom = document.getElementById("nom")
+        var ernom = document.getElementById("ernom")
+        var adresse = document.getElementById("adresse")
+        var eradresse = document.getElementById("eradresse")
+        var tel = document.getElementById("tel")
+        var ertel = document.getElementById("ertel")
+        var paypal = document.getElementById("paypal")
+        var carte_bn = document.getElementById("carte-bn")
+        var erCarte = document.getElementById("ernumCarte")
+        var exp1 = document.getElementById("exp1")
+        var exp2 = document.getElementById("exp2")
+        var pwd = document.getElementById("pwd")
+        var erpwd = document.getElementById("erpwd")
+        var email = document.getElementById("email")
+        var ermail= document.getElementById("ermail")
+        var codeV = document.getElementById("cv")
+        var ercv = document.getElementById("ercv")
+        var numcarte =document.getElementById("num-carte")
+        var compt=0
+        var Valide = document.getElementById("textER")
+        // var Erreur = document.getElementById("textER")
+        // var champ_paypal = document.getElementById("paypal")
+        // var champ_carte = document.getElementById("carte-bn")
+
+        var Vtele=/^(6|5|7)[0-9]{8}/;
+        var Vnumcarte=/^[0-9]{16}$/;
+        var Vemail=/\w+(\.)?\w+@\w+\.(com|fr|org)/g;
+        var cdV =/\d{3}/;
+     function verifier(){
+         if(!(/^[a-zA-Z]+\s[a-zA-Z]+$/.test(nom.value))){
+             ernom.innerHTML="le nom incorrect"
+             compt+=1;
+         }else{
+             ernom.innerHTML=""
+             compt-=1;
+         }
+         if(!(/\w+/.test(adresse.value))){
+             eradresse.innerHTML="ajouter votre adresse"
+             compt+=1;
+         }else{
+             eradresse.innerHTML=""
+             compt-=1;
+
+         }
+         if(!(Vtele.test(tel.value))){
+             ertel.innerHTML="num non valide"
+             compt+=1;
+         }else{
+             ertel.innerHTML=""
+             compt-=1;
+         }
+         if(!(Vemail.test(email.value))){
+             ermail.innerHTML="email invalide"
+             compt+=1;
+         }else{
+             ermail.innerHTML=""
+             compt-=1;
+         }
+         if(!(Vnumcarte.test(numcarte.value))){
+             erCarte.innerHTML="num de carte invalide"
+             compt+=1;
+         }else{
+             erCarte.innerHTML=""
+             compt-=1;
+         }
+         if(!(cdV.test(codeV.value))){
+             ercv.innerHTML="code verifivation incorrect"
+             compt+=1;
+         }else{
+             ercv.innerHTML=""
+             compt-=1;
+         }
+         if(!(/[0-9a-zA-Z]{8,}$/.test(pwd))){
+             erpwd.innerHTML="mot de passe court(il faut mettre que lettres et nombres)"
+             compt+=1;
+         }else{
+             erpwd.innerHTML=""
+             compt-=1;
+         }
+         
+         if(compt>0){
+             document.getElementById("ereur").style.display="block";
+             Valide.innerHTML="payement 'Non VALIDE'"
+         }else{
+            document.getElementById("ereur").style.display="block";
+             Valide.innerHTML="payement 'VALIDE' "
+         }
+     }
+
+    //  function check(){
+    //      if( paypal.checked==true){
+    //         document.getElementById("champ_paypal").style.visibility="visible";
+    //         document.getElementById("champ_carte").style.visibility="hidden";
+    //      }
+    //      else if (carte_bn.checked==true){
+    //         document.getElementById("champ_paypal").style.visibility="hidden";
+    //         document.getElementById("champ_carte").style.visibility="visible";
+    //      }
+
+    //  }
+    function check(){
+         if( paypal.checked==true){
+            document.getElementById("champ_paypal").style.display='block';
+            document.getElementById("champ_carte").style.display="none";
+         }
+         else if (carte_bn.checked==true){
+            document.getElementById("champ_paypal").style.display="none";
+            document.getElementById("champ_carte").style.display="block";
+         }
+
+     }
+
+        
+    </script>
+</body>
+</html>
+
+
+
+
